@@ -20,7 +20,8 @@ For business inquiries, please visit our website and submit the form: [NVIDIA Re
 
 ## Requirements
 - An __NVIDIA GPU__; tensor cores increase performance when available. All shown results come from an RTX 3090.
-- [Visual Studio Build Tools 2019](https://github.com/bycloudai/InstallWindowsVSBuildTools) (Latest the best, ~7GB)
+- [Visual Studio Community 2019](https://visualstudio.microsoft.com/downloads/) (Latest the best, ~8GB) Below are the install requirements
+![image](https://user-images.githubusercontent.com/29135514/151634222-6ac236c9-5fa7-4762-9144-73e50959cb65.png)
 - __[CUDA](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_network) v11.6__
 - On some machines, `pyexr` refuses to install via `pip`. This can be resolved by installing OpenEXR from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#openexr). See later.
 - __[OptiX](https://developer.nvidia.com/optix) 7.3 or higher__ for faster mesh SDF training. You need to either login or join to obtain the installer. Set the system environment variables `OptiX_INSTALL_DIR` to the installation directory if it is not discovered automatically. Should look like this: ![image](https://user-images.githubusercontent.com/29135514/151631220-7a934f5c-c299-41ab-a44e-184e2dc142b9.png)
