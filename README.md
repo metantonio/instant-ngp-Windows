@@ -29,10 +29,7 @@ For business inquiries, please visit our website and submit the form: [NVIDIA Re
 ## Compilation
 
 copy these files `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\extras\visual_studio_integration\MSBuildExtensions`
-
-to here if you use VS BuildTools 2019 `C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Microsoft\VC\v160\BuildCustomizations`
-
-or to here if you use VS Community 2019 `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations`
+to here `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations`
 
 Begin by cloning this repository and all its submodules using the following command:
 ```sh
