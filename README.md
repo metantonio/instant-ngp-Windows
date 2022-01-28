@@ -84,7 +84,7 @@ To run instant-ngp: (You may have reorganize the folder structure due to how `tr
 <path_to_your_ngp>\instant-ngp\build\testbed.exe --scene data/<image_set_name>
 ```
 
-And it should launch the GUI and everything amazing
+And it should launch the GUI and everything amazing with it, and my fork edits end here.
 
 
 ## Interactive training and rendering
