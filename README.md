@@ -1,6 +1,7 @@
 # Instant Neural Graphics Primitives ![](https://github.com/NVlabs/instant-ngp/workflows/CI/badge.svg)
 
 ## This is a forked Windows Installation Tutorial and the main codes will not be updated
+Follow this YouTube [tutorial]() to understand the installation process more easily and if you have any questions feel free to join my [discord](https://discord.gg/sE8R7e45MV) and ask there.
 
 <img src="docs/assets_readme/fox.gif" height="342"/> <img src="docs/assets_readme/robot5.gif" height="342"/>
 
@@ -19,27 +20,18 @@ For business inquiries, please visit our website and submit the form: [NVIDIA Re
 
 ## Requirements
 - An __NVIDIA GPU__; tensor cores increase performance when available. All shown results come from an RTX 3090.
-- [Visual Studio 2019 Community](https://visualstudio.microsoft.com/downloads/) (Latest the best, ~8GB)
+- [Visual Studio Build Tools 2019](https://github.com/bycloudai/InstallWindowsVSBuildTools) (Latest the best, ~7GB)
 - __[CUDA](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_network) v11.6__
 - On some machines, `pyexr` refuses to install via `pip`. This can be resolved by installing OpenEXR from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#openexr). See later.
-- __[OptiX](https://developer.nvidia.com/optix) 7.3 or higher__ for faster mesh SDF training. Set the environment variable `OptiX_INSTALL_DIR` to the installation directory if it is not discovered automatically.
+- __[OptiX](https://developer.nvidia.com/optix) 7.3 or higher__ for faster mesh SDF training. You need to either login or join to obtain the installer. Set the system environment variables `OptiX_INSTALL_DIR` to the installation directory if it is not discovered automatically. Should look like this: ![image](https://user-images.githubusercontent.com/29135514/151631220-7a934f5c-c299-41ab-a44e-184e2dc142b9.png)
 
+## Compilation
 
-If you are using Linux, install the following packages
-```sh
-sudo apt-get install build-essential git python3-dev python3-pip libopenexr-dev libxi-dev \
-                     libglfw3-dev libglew-dev libomp-dev libxinerama-dev libxcursor-dev
-```
+copy these files `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\extras\visual_studio_integration\MSBuildExtensions`
 
-We also recommend installing [CUDA](https://developer.nvidia.com/cuda-toolkit) and [OptiX](https://developer.nvidia.com/optix) in `/usr/local/` and adding the CUDA installation to your PATH.
-For example, if you have CUDA 11.4, add the following to your `~/.bashrc`
-```sh
-export PATH="/usr/local/cuda-11.4/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda-11.4/lib64:$LD_LIBRARY_PATH"
-```
+to here if you use VS BuildTools 2019 `C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Microsoft\VC\v160\BuildCustomizations`
 
-
-## Compilation (Windows & Linux)
+or to here if you use VS Community 2019 `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations`
 
 Begin by cloning this repository and all its submodules using the following command:
 ```sh
@@ -47,15 +39,17 @@ $ git clone --recursive https://github.com/nvlabs/instant-ngp
 $ cd instant-ngp
 ```
 
-Then, use CMake to build the project: (on Windows, this must be in a [developer command prompt](https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160#developer_command_prompt))
+Then, open **Developer Command Prompt**, you can find this in your search bar.
+
+![image](https://user-images.githubusercontent.com/29135514/151631759-ff8538ab-74c6-4c7b-962e-d7b097e819db.png)
+
+Then `cd` to where you cloned your repository so you are in its root folder /instant-ng/`:
 ```sh
-instant-ngp$ cmake . -B build
-instant-ngp$ cmake --build build --config RelWithDebInfo -j 16
+cmake . -B build
+cmake --build build --config RelWithDebInfo -j 16
 ```
 
-If the build fails, please consult [this list of possible fixes](https://github.com/NVlabs/instant-ngp#troubleshooting-compile-errors) before opening an issue.
-
-If the build succeeds, you can now run the code via the `build/testbed` executable or the `scripts/run.py` script described below.
+If the any of these build fails, please consult [this list of possible fixes](https://github.com/NVlabs/instant-ngp#troubleshooting-compile-errors) before opening an issue.
 
 If automatic GPU architecture detection fails, (as can happen if you have multiple GPUs installed), set the  `TCNN_CUDA_ARCHITECTURES` enivonment variable for the GPU you would like to use. The following table lists the values for common GPUs. If your GPU is not listed, consult [this exhaustive list](https://developer.nvidia.com/cuda-gpus).
 
@@ -63,6 +57,34 @@ If automatic GPU architecture detection fails, (as can happen if you have multip
 |----------|------|----------|----------------|---------------------|---------|-----|
 |       86 |   80 |       75 |             70 |                  61 |      52 |  37 |
 
+
+## Interactive Training and Rendering on Custom Image Sets
+Install [COLMAP](https://github.com/colmap/colmap/releases/tag/3.7), I used ver 3.7
+
+Add it to your system environment variables at Environment Variables > System Variables Path > Edit environment variable
+![image](https://user-images.githubusercontent.com/29135514/151633058-e45f9220-c417-4249-aff3-09d29c1a4e9b.png)
+
+open anaconda prompt, if you don't have you don't have you can get it [here](https://www.anaconda.com/products/individual)
+`cd` into isntant-ngp as root
+```sh
+conda create -n ngp python=3.9
+conda activate ngp
+pip install -r requirements.txt
+```
+Place your custom image set under `data/<image_set_name>`
+
+Get `transform.json` from the following command. Insert your path to your images at `<image/path>`
+```sh
+python scripts/col2nerf.py --colmap_matcher exhaustive --run_colmap --aabb_scale 16 --images <image/path>
+```
+drag and drop `transform.json` in your `data/<image_set_name>` folder.
+
+To run instant-ngp: (You may have reorganize the folder structure due to how `transform.json` is created...
+```
+<path_to_your_ngp>\instant-ngp\build\testbed.exe --scene data/<image_set_name>
+```
+
+And it should launch the GUI and everything amazing
 
 
 ## Interactive training and rendering
