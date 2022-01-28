@@ -43,7 +43,7 @@ Then, open **Developer Command Prompt**, you can find this in your search bar.
 
 ![image](https://user-images.githubusercontent.com/29135514/151631759-ff8538ab-74c6-4c7b-962e-d7b097e819db.png)
 
-Then `cd` to where you cloned your repository so you are in its root folder /instant-ng/`:
+Then `cd` to where you cloned your repository so you are in its root folder `/instant-ng/`:
 ```sh
 cmake . -B build
 cmake --build build --config RelWithDebInfo -j 16
@@ -62,6 +62,7 @@ If automatic GPU architecture detection fails, (as can happen if you have multip
 Install [COLMAP](https://github.com/colmap/colmap/releases/tag/3.7), I used ver 3.7
 
 Add it to your system environment variables at Environment Variables > System Variables Path > Edit environment variable
+
 ![image](https://user-images.githubusercontent.com/29135514/151633058-e45f9220-c417-4249-aff3-09d29c1a4e9b.png)
 
 open anaconda prompt, if you don't have you don't have you can get it [here](https://www.anaconda.com/products/individual)
