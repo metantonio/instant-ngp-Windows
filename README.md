@@ -74,13 +74,50 @@ Place your custom image set under `data/<image_set_name>`
 
 Get `transform.json` from the following command. Insert your path to your images at `<image/path>`
 ```sh
-python scripts/col2nerf.py --colmap_matcher exhaustive --run_colmap --aabb_scale 16 --images <image/path>
+python scripts/colmap2nerf.py --colmap_matcher exhaustive --run_colmap --aabb_scale 16 --images <image/path>
 ```
-drag and drop `transform.json` in your `data/<image_set_name>` folder.
+`transform.json` will be generated at the root folder, drag and drop it into your `data/<image_set_name>` folder.
 
-To run instant-ngp: (You may have reorganize the folder structure due to how `transform.json` is created...
+You have to reorganize the folder structure due to how `transform.json` is created...
+
+For example:
+
+File Structure **BEFORE** generating transform.json
+```
+📂instant-ngp/ # this is root
+├── 📂data/
+│	├── 📂toy_truck/
+│	│	├── 📜toy_truck_001.jpg
+│	│	├── 📜toy_truck_002.jpg
+│	│	│...
+│   │...
+│...
+```
+
+File Structure **AFTER** generating transform.json
+```
+📂instant-ngp/ # this is root
+├── 📂data/
+│	├── 📂toy_truck/
+│	├── 📜transform.json/
+│	│	├── 📂data/
+│	│	│	├── 📂toy_truck/
+│	│	│	│	├── 📜toy_truck_001.jpg
+│	│	│	│	├── 📜toy_truck_002.jpg
+│	│	│	│	│...
+│	│	│	│...
+│	│	│...
+│	│...
+│...
+```
+
+Finally, to run instant-ngp: 
 ```
 <path_to_your_ngp>\instant-ngp\build\testbed.exe --scene data/<image_set_name>
+```
+eg.
+```
+C:\user\user\download\instant-ngp\build\testbed.exe --scene data/toy_truck
 ```
 
 And it should launch the GUI and everything amazing with it, and my fork edits end here.
