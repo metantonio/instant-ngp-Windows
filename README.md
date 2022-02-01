@@ -112,7 +112,7 @@ File Structure **AFTER** generating transform.json
 ```
 
 Finally, to run instant-ngp: 
-```
+```sh
 <path_to_your_ngp>\instant-ngp\build\testbed.exe --scene data/<image_set_name>
 ```
 eg.
