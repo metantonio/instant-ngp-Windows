@@ -148,7 +148,7 @@ This codebase comes with an interactive testbed that includes many features beyo
 One test scene is provided in this repository, using a small number of frames from a casually captured phone video:
 
 ```sh
-instant-ngp$ ./build/testbed --scene data/nerf/fox
+instant-ngp$ build\testbed --scene data/nerf/fox --width 640 --height 480
 ```
 
 <img src="docs/assets_readme/fox.png"/>
@@ -157,7 +157,7 @@ Alternatively, download any NeRF-compatible scene (e.g. [from the NeRF authors' 
 Now you can run:
 
 ```sh
-instant-ngp$ ./build/testbed --scene data/nerf_synthetic/lego/transforms_train.json
+instant-ngp$ build\testbed --scene data/nerf_synthetic/lego/transforms_train.json
 ```
 
 For more information about preparing datasets for use with our NeRF implementation, please see [this document](docs/nerf_dataset_tips.md).
@@ -165,7 +165,7 @@ For more information about preparing datasets for use with our NeRF implementati
 ### SDF armadillo
 
 ```sh
-instant-ngp$ ./build/testbed --scene data/sdf/armadillo.obj
+instant-ngp$ .\build\testbed --scene data/sdf/armadillo.obj
 ```
 
 <img src="docs/assets_readme/armadillo.png"/>
@@ -173,7 +173,7 @@ instant-ngp$ ./build/testbed --scene data/sdf/armadillo.obj
 ### Image of Einstein
 
 ```sh
-instant-ngp$ ./build/testbed --scene data/image/albert.exr
+instant-ngp$ .\build\testbed --scene data/image/albert.exr
 ```
 
 <img src="docs/assets_readme/albert.png"/>
