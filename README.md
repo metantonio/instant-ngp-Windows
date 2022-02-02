@@ -114,6 +114,8 @@ File Structure **AFTER** generating transform.json
 │	│...
 │...
 ```
+Note: adjusting the `"aabb_scale"` inside `transform.json` can reduce load on GPU VRAM. The lower the value the less intensive it'll be. 
+
 
 Finally, to run instant-ngp: 
 ```sh
